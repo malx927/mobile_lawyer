@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import { Button, NavBar, Tabbar, TabbarItem} from 'vant';
 
+
 Vue.config.productionTip = false
 
 Vue.use(Button);

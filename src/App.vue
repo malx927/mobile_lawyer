@@ -10,6 +10,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  name:"app",
+  data(){
+    return {
+      active: 0,
+    }
+  }
+}
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
