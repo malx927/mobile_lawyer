@@ -33,8 +33,8 @@ router.beforeEach((to, from, next) => {
   console.log(openid)
   if(!openid){
     //获取openid
-    console.log('ddddddd')
-    get_token_openid()
+		get_token_openid()
+	//window.location.href='/api/wechat/get_token_openid'
     // get_token_openid().then(response=>{
     //   console.log(response)
     // })
