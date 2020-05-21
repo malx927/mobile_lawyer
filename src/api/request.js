@@ -9,8 +9,6 @@ import axios from 'axios'
   //instance.defaults.headers.common['Authorization'] = AUTH_TOKEN;
   // 2.axios的拦截器
   instance.interceptors.request.use(config => {
-    console.log('000000000000000000000000')
-    console.log(localStorage.getItem("openid"))
     config.headers.common["openid"] = localStorage.getItem('openid')
     console.log(config)
     return config
@@ -25,4 +23,4 @@ import axios from 'axios'
     console.log(err);
   })
 
-  export default instance
+ export default instance

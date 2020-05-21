@@ -1,0 +1,25 @@
+html, body, #app{
+  height:100%;
+  margin:0;
+  padding: 0;
+}
+
+#NavBar .van-nav-bar{
+  background-color:#1989fa;
+  /* 设置导航栏的渐变色 */
+  /* background: linear-gradient(to right, #ff2e29, #fe6e49)!important;
+  background: -webkit-linear-gradient(to right, #ff2e29, #fe6e49)!important; */
+  /* border:0; */
+}
+#NavBar .van-nav-bar .van-nav-bar__left{
+  color:#fff;
+}
+#NavBar .van-nav-bar .van-nav-bar__title{
+  color:#fff;
+}
+#NavBar .van-nav-bar .van-icon{
+  color:#fff;
+}
+#NavBar .van-nav-bar .van-nav-bar__text{
+  color:#fff;
+}
