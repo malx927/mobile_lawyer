@@ -1,11 +1,23 @@
 import request from '@/api/request'
 
-export function get_token_openid(){
-  console.log("---------------")
+export function get_auth_code(params){
+
   const res = request({
-          url: '/wechat/get_token_openid',
+          url: '/wechat/auth_code',
           method: 'get',
+          params,
         })
-  console.log(res);
+
+  return res
+}
+
+export function get_auth_openid(params){
+
+  const res = request({
+          url: '/wechat/auth_openid',
+          method: 'get',
+          params,
+        })
+
   return res
 }
