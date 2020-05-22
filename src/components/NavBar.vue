@@ -1,21 +1,38 @@
 <template>
   <div id="NavBar">
-    <van-nav-bar :title="title" :fixed="true" left-text="返回" left-arrow @click-left="onClickLeft">
-      <template #right>
-        <van-button  type="warning" size="small" >购买服务</van-button>
+    <van-nav-bar :title="title" :fixed="true" left-text="返回" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+      <template #right v-if="isShow">
+        <van-button  type="warning" size="small" >{{btntitle}}</van-button>
       </template>
-    </van-nav-bar> 
+    </van-nav-bar>
+    <div style="height:46px;"></div> 
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title"],
+  props: {
+    title:{
+      type:String,
+      default:""
+    },
+    btntitle:{
+      type: String,
+      default:"购买服务"
+    },
+    isShow:{
+      type:Boolean,
+      default: true
+    }
+  },
   computed: {},
   methods: {
      onClickLeft(){
       this.$router.go(-1)
     },
+    onClickRight(){
+      this.$emit("click-right");
+    }
   },
   created() {},
   mounted() {}

@@ -1,10 +1,11 @@
+import "@/assets/css/global.css"
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import { Button, NavBar, Col, Row, Toast } from 'vant';
-import { Swipe, SwipeItem, Lazyload, Icon } from 'vant';
-import "@/assets/css/global.css"
+import { Swipe, SwipeItem, Lazyload, Icon, Panel, Form, Field  } from 'vant';
+
 
 Vue.config.productionTip = false
 
@@ -18,6 +19,9 @@ Vue.use(Row);
 Vue.use(NavBar);
 Vue.use(Icon);
 Vue.use(Toast);
+Vue.use(Panel);
+Vue.use(Form);
+Vue.use(Field);
 
 new Vue({
   router,

@@ -23,6 +23,14 @@ Vue.use(VueRouter)
     },
     component: () => import('@/views/service/PrivateLawyer')
   },
+  {
+    path: '/private_contract_edit',
+    name: 'private_contract_edit',
+    meta: {
+      title: '私人合同'
+    },
+    component: () => import('@/views/service/PrivateContractEdit')
+  },
 
   {
     path: '/adviser',
@@ -48,18 +56,18 @@ const router = new VueRouter({
 // 挂载路由导航守卫
 router.beforeEach((to, from, next) => {
   document.title = to.matched[0].meta.title
-  const openid = localStorage.getItem('openid');
-
-  if(!openid){
-    if(to.path === '/auth'){
-      next()
-    }else{
-      localStorage.setItem('to_url', to.fullPath)
-      next('/auth')
-    }
-  }else{
-    next()
-  }
+  // const openid = localStorage.getItem('openid');
+  next()
+  // if(!openid){
+  //   if(to.path === '/auth'){
+  //     next()
+  //   }else{
+  //     localStorage.setItem('to_url', to.fullPath)
+  //     next('/auth')
+  //   }
+  // }else{
+  //   next()
+  // }
 
 })
 

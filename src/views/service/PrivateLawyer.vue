@@ -1,38 +1,68 @@
 <template>
   <div>
-    <nav-bar></nav-bar>
-  </div>
-  <!-- <div id="NavBar">
-    <van-nav-bar :title="title" :fixed="true" left-text="返回" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
-      <template #right>
-        <van-button  type="warning" size="small" >购买服务</van-button>
+    <nav-bar :title="title" @click-right="onClick"></nav-bar>
+    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
+      <p class="van-cell__label">马李欣 210824444444444</p>
+      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <template #footer>
+        <span style="float:left;">祥子律师事务所</span>
+        <van-button size="small" type="primary">合同详情</van-button>
       </template>
-    </van-nav-bar> 
-    
-  </div> -->
+    </van-panel>
+    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
+      <p class="van-cell__label">马李欣 210824444444444</p>
+      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <template #footer>
+        <span style="float:left;">祥子律师事务所</span>
+        <van-button size="small" type="primary">合同详情</van-button>
+      </template>
+    </van-panel>
+    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
+      <p class="van-cell__label">马李欣 210824444444444</p>
+      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <template #footer>
+        <span style="float:left;">祥子律师事务所</span>
+        <van-button size="small" type="primary">合同详情</van-button>
+      </template>
+    </van-panel>
+    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
+      <p class="van-cell__label">马李欣 210824444444444</p>
+      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <template #footer>
+        <span style="float:left;">祥子律师事务所</span>
+        <van-button size="small" type="primary">合同详情</van-button>
+      </template>
+    </van-panel>
+    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
+      <p class="van-cell__label">马李欣 210824444444444</p>
+      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <template #footer>
+        <span style="float:left;">祥子律师事务所</span>
+        <van-button size="small" type="primary">合同详情</van-button>
+      </template>
+    </van-panel>
+  </div>
 </template>
 
 <script>
-import NavBar  from "@/components/NavBar";
+import NavBar from "@/components/NavBar";
 export default {
+  name: "private",
   components: {
-    NavBar,
+    NavBar
   },
-  props: {
-  
-  },
+  props: {},
   data() {
     return {
       title: this.$route.meta.title,
+      code: "20170808",
+      name: ""
     };
   },
   computed: {},
   methods: {
-    onClickLeft(){
-      this.$router.go(-1)
-    },
-    onClickRight(){
-      this.$toast('提示文案1');
+    onClick() {
+      this.$router.push("/private_contract_edit");
     }
   },
   created() {},
@@ -42,12 +72,17 @@ export default {
 
 <style scoped>
 
-/* .van-nav-bar{
-  background-color:#1989fa;
-  font-size: 18px!important; 
-  background: linear-gradient(to right, #ff2e29, #fe6e49)!important;
-  background: -webkit-linear-gradient(to right, #ff2e29, #fe6e49)!important;
-  border:0;
-} */
-
+.van-panel__content {
+  padding: 10px 20px 0px 20px;
+  font-size: 14px;
+}
+.van-panel__footer {
+  text-align: right;
+  padding-left: 20px;
+  color: #5f6063;
+  font-size: 14px;
+}
+.van-cell__label {
+  font-size: 14px;
+}
 </style>

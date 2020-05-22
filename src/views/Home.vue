@@ -6,7 +6,7 @@
       </van-swipe-item>
     </van-swipe>
     <van-row type="flex" justify="space-around">
-      <van-col span="12">
+      <van-col span="12" >
         <van-button to="/private" icon="vip-card-o" type="primary" >私人律师</van-button>
         </van-col>
       <van-col span="12">
@@ -43,6 +43,9 @@ export default {
   padding: 1.0rem 1.0rem;
   background-color: #fff;
   pointer-events: none;
+}
+.van-col{
+  text-align: center;
 }
 </style>>
 

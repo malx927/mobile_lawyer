@@ -1,18 +1,29 @@
 <template>
-  <div>法律顾问</div>
+  <div>
+    <nav-bar :title="title" @click-right="onClick"></nav-bar>
+  </div>
 </template>
 
 <script>
+import NavBar from '@/components/NavBar'
 export default {
-  components: {},
+  name:"adviser",
+  components: {
+    NavBar
+  },
   props: {},
   data() {
     return {
+      title: this.$route.meta.title
     };
   },
-  watch: {},
+
   computed: {},
-  methods: {},
+  methods: {
+    onClick(){
+      this.$toast('提示文案9999');
+    }
+  },
   created() {},
   mounted() {}
 };
