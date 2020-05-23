@@ -24,10 +24,19 @@ Vue.use(VueRouter)
     component: () => import('@/views/service/PrivateLawyer')
   },
   {
-    path: '/private_contract_edit',
-    name: 'private_contract_edit',
+    path: '/private_contract_add',
+    name: 'private_contract_add',
     meta: {
-      title: '私人合同'
+      title: '私人合同增加'
+    },
+    component: () => import('@/views/service/PrivateContractEdit')
+  },
+
+  {
+    path: '/private_contract_update/:contract_id',
+    name: 'private_contract_update',
+    meta: {
+      title: '私人合同修改'
     },
     component: () => import('@/views/service/PrivateContractEdit')
   },
