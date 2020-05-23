@@ -34,25 +34,19 @@
       <van-field
         readonly
         clickable
-        name="datetimePicker"
-        :value="value"
-        label="时间选择"
-        placeholder="点击选择时间"
-        @click="showPicker = true"
+        name="contract_date"
+        :value="contract_date"
+        label="合同时间"
+        placeholder="点击选择合同时间"
+        @click="showCalendar = true"
       />
-      <van-field
-        v-model="client"
-        name="client"
-        label="委托人"
-        placeholder="委托人"
-        :rules="[{ required: true, message: '请填写委托人' }]"
-      />
+
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit">提交</van-button>
       </div>
     </van-form>
-    <van-popup v-model="showPicker" position="bottom">
-      <van-datetime-picker type="time" @confirm="onConfirm" @cancel="showPicker = false" />
+    <van-popup v-model="showCalendar" position="bottom">
+      <van-calendar v-model="showCalendar" type="range" :min-date="minDate" :max-date="maxDate" @confirm="onConfirm" :show-confirm="false"/>
     </van-popup>
   </div>
 </template>
@@ -68,18 +62,37 @@ export default {
   data() {
     return {
       title: this.$route.meta.title,
-      showPicker: false,
+      minDate: new Date(),
+      maxDate: this.nextYearDate(),
+      showCalendar: false,
       name: "",
       telephone: "",
       id_card: "",
-      client: ""
+      client: "",
+      contract_date: "",
     };
   },
-  computed: {},
+  computed: {
+    
+  },
   methods: {
+    nextYearDate(){
+      let date = new Date();
+      date.setFullYear(date.getFullYear() + 1);
+      return date;
+    },
+    
+    formatDate(date) {
+      return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
+    },
     onSubmit(values) {
       console.log("submit", values);
-    }
+    },
+    onConfirm(date) {
+      const [start, end] = date;
+      this.contract_date  = `${this.formatDate(start)} - ${this.formatDate(end)}`;
+      this.showCalendar = false;
+    },
   },
   created() {},
   mounted() {}
