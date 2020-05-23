@@ -5,8 +5,14 @@ import router from './router'
 import store from './store'
 import { Button, NavBar, Col, Row, Toast } from 'vant';
 import { Swipe, SwipeItem, Lazyload, Icon, Panel, Form, Field  } from 'vant';
+<<<<<<< HEAD
 import { Popup } from 'vant';
 import { Calendar } from 'vant';
+=======
+import { Calendar } from 'vant';
+import { Popup } from 'vant';
+
+>>>>>>> a2b99472a9309751d50958ef78501065fc141709
 
 
 Vue.config.productionTip = false
@@ -24,8 +30,13 @@ Vue.use(Toast);
 Vue.use(Panel);
 Vue.use(Form);
 Vue.use(Field);
+<<<<<<< HEAD
 Vue.use(Popup);
 Vue.use(Calendar);
+=======
+Vue.use(Calendar);
+Vue.use(Popup);
+>>>>>>> a2b99472a9309751d50958ef78501065fc141709
 
 new Vue({
   router,

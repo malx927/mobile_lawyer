@@ -1,51 +1,30 @@
 <template>
   <div>
     <nav-bar :title="title" @click-right="onClick"></nav-bar>
-    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
-      <p class="van-cell__label">马李欣 210824444444444</p>
-      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
-      <template #footer>
-        <span style="float:left;">祥子律师事务所</span>
-        <van-button size="small" type="primary">合同详情</van-button>
+    <van-panel v-for="(contract, index) in contracts" :key="index" :title="'合同编号: '+ contract.show_code" status="状态">
+      <template #header>
+        <div class="van-cell van-panel__header">
+          <div class="van-cell__title"><span>合同编号: {{contract.show_code}}</span></div>
+          <div class="van-cell__value van-panel__header-value " :class="{'status': contract.is_success}">
+            <span v-if="contract.is_success"><van-icon name="checked" /></span>
+            <span v-else><van-icon name="question" /></span>
+            </div>
+        </div>
       </template>
-    </van-panel>
-    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
-      <p class="van-cell__label">马李欣 210824444444444</p>
-      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
+      <p class="van-cell__label">{{contract.name}}【{{contract.id_card}}】</p>
+      <p class="van-cell__label">有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
       <template #footer>
-        <span style="float:left;">祥子律师事务所</span>
-        <van-button size="small" type="primary">合同详情</van-button>
-      </template>
-    </van-panel>
-    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
-      <p class="van-cell__label">马李欣 210824444444444</p>
-      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
-      <template #footer>
-        <span style="float:left;">祥子律师事务所</span>
-        <van-button size="small" type="primary">合同详情</van-button>
-      </template>
-    </van-panel>
-    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
-      <p class="van-cell__label">马李欣 210824444444444</p>
-      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
-      <template #footer>
-        <span style="float:left;">祥子律师事务所</span>
-        <van-button size="small" type="primary">合同详情</van-button>
-      </template>
-    </van-panel>
-    <van-panel :title="'合同编号: '+ code" :desc="name" status="状态">
-      <p class="van-cell__label">马李欣 210824444444444</p>
-      <p class="van-cell__label">有效时间：2010-01-01 至 2010-12-01</p>
-      <template #footer>
-        <span style="float:left;">祥子律师事务所</span>
-        <van-button size="small" type="primary">合同详情</van-button>
+        <span style="float:left;">{{contract.office_name}}</span>
+        <van-button size="small" type="primary" @click="onContractDetail(contract.id)">合同详情</van-button>
       </template>
     </van-panel>
   </div>
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/NavBar"
+import { private_contract_list } from '@/api/service'
+
 export default {
   name: "private",
   components: {
@@ -56,22 +35,45 @@ export default {
     return {
       title: this.$route.meta.title,
       code: "20170808",
-      name: ""
+      name: "",
+      contracts:[],
     };
   },
   computed: {},
   methods: {
     onClick() {
-      this.$router.push("/private_contract_edit");
+      this.$router.push("/private_contract_add");
+    },
+    onContractDetail(contract_id){
+        console.log(contract_id)
+    },
+    getPrivateContractList(){
+      private_contract_list().then(res => {
+          console.log(res)
+          this.contracts = res
+      }).catch(error => {
+        if (error.response) {
+            console.log(error.response.data);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+          console.log(error.config);
+      })
     }
   },
-  created() {},
+  created() {
+    this.getPrivateContractList()
+  },
   mounted() {}
 };
 </script>
 
 <style scoped>
-
+.van-cell__title{
+  min-width: 70%;
+}
 .van-panel__content {
   padding: 10px 20px 0px 20px;
   font-size: 14px;
@@ -84,5 +86,11 @@ export default {
 }
 .van-cell__label {
   font-size: 14px;
+}
+.van-panel__header-value{
+  font-size:1.4rem;
+}
+.status{
+  color: #07c160;
 }
 </style>
