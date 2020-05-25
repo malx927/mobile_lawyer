@@ -47,7 +47,7 @@
       </div>
     </van-form>
 
-    <van-calendar v-model="showCalendar" @confirm="onConfirm" :min-date="minDate" :max-date="maxDate" type="range" />
+    <van-calendar v-model="showCalendar"  @confirm="onConfirm" :min-date="minDate" :max-date="maxDate" type="range" />
 
   </div>
 </template>
@@ -55,20 +55,24 @@
 <script>
 import NavBar from "@/components/NavBar"
 import { office } from '@/api/office'
-import { private_contract_add } from '@/api/service'
+import { private_contract_add, get_person_info, private_contract_info, private_contract_update } from '@/api/service'
 
 export default {
   name: "PrivateContractEdit",
   components: {
     NavBar
   },
-  props: {},
+  props: {
+    contract_id: String
+  },
   data() {
     return {
       title: this.$route.meta.title,
       showCalendar: false,
       minDate: new Date(),
       maxDate: this.nextYear(),
+      // defDate: [],
+      openid: "",
       name: "",
       telephone: "",
       id_card: "",
@@ -113,7 +117,15 @@ export default {
       values["office_man_tel"] = this.office_man_tel
       values["office_address"] = this.office_address
       delete values["contract_date"]
-      this.addPrivateContractInfo(values)
+
+      if(!this.contract_id){
+        this.addPrivateContractInfo(values)   //增加
+      }else{
+        values["id"] = this.contract_id
+        console.log("000000000000", values) //修改
+        this.updatePrivateContractInfo(values)
+      }
+      
     },
     // 获取律师信息
     getOfficeInfo(){
@@ -130,7 +142,9 @@ export default {
     addPrivateContractInfo(contractInfo){
       console.log(contractInfo)
         private_contract_add(contractInfo).then(res=>{
-          console.log(res)
+          if(res.id){
+            this.$router.push(`/private_contract_detail/${res.id}`)
+          }
         }).catch(error => {
           if (error.response) {
             console.log(error.response.data);
@@ -141,10 +155,68 @@ export default {
           }
           console.log(error.config);
         })
+    },
+    updatePrivateContractInfo(contractInfo){
+      private_contract_update(contractInfo).then(res=>{
+        if(res.id){
+            this.$router.push(`/private_contract_detail/${res.id}`)
+        }
+
+      }).catch(error=>{
+        if (error.response) {
+            console.log(error.response.data);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
+          console.log(error.config);
+      })
+    },
+    getPersonInfo(){
+      const openid = localStorage.getItem('openid')
+      if(openid){
+        get_person_info(openid).then(res => {
+          this.name = res.name
+          this.telephone = res.telephone
+          this.id_card = res.id_card
+          this.client = res.client
+        }).catch(error => {
+          console.log(error)
+        })
+      }
+    },
+    getPrivateContractInfo(contract_id){
+        private_contract_info(contract_id).then(res=>{
+          console.log(res, "getPrivateContractInfo")
+          this.openid = res.openid
+          this.name = res.name
+          this.telephone = res.telephone
+          this.id_card = res.id_card
+          this.client = res.client
+          this.start_date =  res.start_date,
+          this.end_date= res.end_date
+          this.office_name = res.office_name
+          this.office_man = res.office_man
+          this.office_address = res.office_address
+          this.office_man_tel = res.office_man_tel
+          // this.defDate = [new Date(Date.parse(res.start_date.replace(/-/g, "/"))), new Date(Date.parse(res.end_date.replace(/-/g, "/")))]
+          // this.contract_date = `${this.start_date} - ${this.end_date}`
+        }).catch(error=>{
+          console.log(error)
+        })
     }
   },
   created() {
-    this.getOfficeInfo()
+    if(this.contract_id > 0){
+      this.getPrivateContractInfo(this.contract_id)
+    }else{
+      this.getPersonInfo()
+      this.getOfficeInfo()
+    }
+ 
+    
+
   },
   mounted() {}
 };

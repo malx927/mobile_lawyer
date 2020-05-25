@@ -1,6 +1,12 @@
 <template>
   <div>
     <nav-bar :title="title" @click-right="onClick"></nav-bar>
+    <van-grid>
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+      <van-grid-item icon="photo-o" text="文字" />
+    </van-grid>
     <van-panel v-for="(contract, index) in contracts" :key="index" :title="'合同编号: '+ contract.show_code" status="状态">
       <template #header>
         <div class="van-cell van-panel__header">
@@ -15,7 +21,7 @@
       <p class="van-cell__label">有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
       <template #footer>
         <span style="float:left;">{{contract.office_name}}</span>
-        <van-button size="small" type="primary" @click="onContractDetail(contract.id)">合同详情</van-button>
+        <van-button size="small" type="primary" @click="onContractDetail(contract.id, contract.is_success)">合同详情</van-button>
       </template>
     </van-panel>
   </div>
@@ -44,8 +50,13 @@ export default {
     onClick() {
       this.$router.push("/private_contract_add");
     },
-    onContractDetail(contract_id){
-        console.log(contract_id)
+    onContractDetail(contract_id, is_success){
+        console.log(contract_id, is_success)
+        if(!is_success){
+          this.$router.push('/private_contract_update/' + contract_id + '/')  //修改
+        }else{
+            //empty
+        }
     },
     getPrivateContractList(){
       private_contract_list().then(res => {
