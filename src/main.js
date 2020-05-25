@@ -3,11 +3,27 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Button, NavBar, Col, Row, Toast } from 'vant';
-import { Swipe, SwipeItem, Lazyload, Icon, Panel, Form, Field  } from 'vant';
-import { Calendar } from 'vant';
-import { Popup } from 'vant';
-
+import { 
+  Button, 
+  NavBar, 
+  Col, 
+  Row, 
+  Toast,
+  Swipe, 
+  SwipeItem, 
+  Lazyload, 
+  Icon, 
+  Panel, 
+  Form, 
+  Field,
+  Cell,
+  CellGroup,
+  Calendar,
+  Popup,
+  Divider,
+  Grid, 
+  GridItem
+ } from 'vant';
 
 
 Vue.config.productionTip = false
@@ -27,6 +43,11 @@ Vue.use(Form);
 Vue.use(Field);
 Vue.use(Calendar);
 Vue.use(Popup);
+Vue.use(Cell);
+Vue.use(CellGroup);
+Vue.use(Divider);
+Vue.use(Grid);
+Vue.use(GridItem);
 
 new Vue({
   router,

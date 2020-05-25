@@ -35,10 +35,21 @@ Vue.use(VueRouter)
   {
     path: '/private_contract_update/:contract_id',
     name: 'private_contract_update',
+    props: true,
     meta: {
       title: '私人合同修改'
     },
     component: () => import('@/views/service/PrivateContractEdit')
+  },
+
+  {
+    path: '/private_contract_detail/:contract_id',
+    name: 'private_contract_detail',
+    props: true,
+    meta: {
+      title: '私人合同详情'
+    },
+    component: () => import('@/views/service/PrivateContractDetail')
   },
 
   {
