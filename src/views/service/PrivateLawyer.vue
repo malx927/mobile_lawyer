@@ -1,12 +1,12 @@
 <template>
   <div>
     <nav-bar :title="title" @click-right="onClick"></nav-bar>
-    <van-grid>
+    <!-- <van-grid>
       <van-grid-item icon="photo-o" text="文字" />
       <van-grid-item icon="photo-o" text="文字" />
       <van-grid-item icon="photo-o" text="文字" />
       <van-grid-item icon="photo-o" text="文字" />
-    </van-grid>
+    </van-grid> -->
     <van-panel v-for="(contract, index) in contracts" :key="index" :title="'合同编号: '+ contract.show_code" status="状态">
       <template #header>
         <div class="van-cell van-panel__header">
@@ -18,10 +18,10 @@
         </div>
       </template>
       <p class="van-cell__label">{{contract.name}}【{{contract.id_card}}】</p>
-      <p class="van-cell__label">有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
+      <p class="van-cell__label" v-if="contract.is_success" >有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
       <template #footer>
         <span style="float:left;">{{contract.office_name}}</span>
-        <van-button size="small" type="primary" @click="onContractDetail(contract.id, contract.is_success)">合同详情</van-button>
+        <van-button size="small" type="primary" :disabled="!contract.is_success" @click="onContractDetail(contract.id, contract.is_success)">合同详情</van-button>
       </template>
     </van-panel>
   </div>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       title: this.$route.meta.title,
-      code: "20170808",
+      code: "",
       name: "",
       contracts:[],
     };
@@ -48,6 +48,7 @@ export default {
   computed: {},
   methods: {
     onClick() {
+      console.log("0000000000000")
       this.$router.push("/private_contract_add");
     },
     onContractDetail(contract_id, is_success){
@@ -60,8 +61,11 @@ export default {
     },
     getPrivateContractList(){
       private_contract_list().then(res => {
-          console.log(res)
-          this.contracts = res
+        this.contracts = res
+        if(this.contracts.length === 0){
+          this.$router.replace('/private_contract_add')  
+        }
+          
       }).catch(error => {
         if (error.response) {
             console.log(error.response.data);

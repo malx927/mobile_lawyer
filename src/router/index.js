@@ -14,7 +14,6 @@ Vue.use(VueRouter)
     },
     component: Home
   },
-
   {
     path: '/private',
     name: 'private',
@@ -76,18 +75,18 @@ const router = new VueRouter({
 // 挂载路由导航守卫
 router.beforeEach((to, from, next) => {
   document.title = to.matched[0].meta.title
-  // const openid = localStorage.getItem('openid');
-  next()
-  // if(!openid){
-  //   if(to.path === '/auth'){
-  //     next()
-  //   }else{
-  //     localStorage.setItem('to_url', to.fullPath)
-  //     next('/auth')
-  //   }
-  // }else{
-  //   next()
-  // }
+  const openid = localStorage.getItem('openid');
+  // next()
+  if(!openid){
+    if(to.path === '/auth'){
+      next()
+    }else{
+      localStorage.setItem('to_url', to.fullPath)
+      next('/auth')
+    }
+  }else{
+    next()
+  }
 
 })
 
