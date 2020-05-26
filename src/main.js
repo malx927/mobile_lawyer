@@ -23,8 +23,12 @@ import {
   Popup,
   Divider,
   Grid, 
-  GridItem
+  GridItem,
+  Empty,
+
  } from 'vant';
+
+ import { Image as VanImage } from 'vant';
 
 
 Vue.config.productionTip = false
@@ -49,6 +53,8 @@ Vue.use(CellGroup);
 Vue.use(Divider);
 Vue.use(Grid);
 Vue.use(GridItem);
+Vue.use(VanImage);
+Vue.use(Empty);
 
 
 new Vue({

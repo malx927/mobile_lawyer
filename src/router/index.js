@@ -26,7 +26,7 @@ Vue.use(VueRouter)
     path: '/private_contract_add',
     name: 'private_contract_add',
     meta: {
-      title: '私人合同增加'
+      title: '律师合同增加'
     },
     component: () => import('@/views/service/PrivateContractEdit')
   },
@@ -36,7 +36,7 @@ Vue.use(VueRouter)
     name: 'private_contract_update',
     props: true,
     meta: {
-      title: '私人合同修改'
+      title: '律师合同修改'
     },
     component: () => import('@/views/service/PrivateContractEdit')
   },
@@ -46,9 +46,19 @@ Vue.use(VueRouter)
     name: 'private_contract_detail',
     props: true,
     meta: {
-      title: '私人合同详情'
+      title: '律师合同详情'
     },
     component: () => import('@/views/service/PrivateContractDetail')
+  },
+
+  {
+    path: '/private_contract_confirm/:contract_id',
+    name: 'private_contract_confirm',
+    props: true,
+    meta: {
+      title: '律师合同确认'
+    },
+    component: () => import('@/views/service/PrivateContractConfirm')
   },
 
   {
@@ -64,6 +74,15 @@ Vue.use(VueRouter)
     path: '/auth',
     name: 'auth',
     component: () => import('@/components/auth/Auth')
+  },
+
+  {
+    path: '/error',
+    name: 'error',
+    meta: {
+      title: '错误提示'
+    },
+    component: () => import('@/components/Error')
   }
 
 ]
@@ -76,7 +95,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   document.title = to.matched[0].meta.title
   const openid = localStorage.getItem('openid');
-  // next()
+
   if(!openid){
     if(to.path === '/auth'){
       next()

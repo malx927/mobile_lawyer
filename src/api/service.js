@@ -26,6 +26,15 @@ export function private_contract_update(contractInfo){
   return res
 }
 
+export function private_contract_confirm(contractInfo){
+  const res = request({
+    url: `/service/private/${contractInfo.id}/`,
+    method: 'PATCH',
+    data: contractInfo
+  })
+  return res
+}
+
 export function private_contract_info(contract_id){
   const res = request({
     url: `/service/private/${contract_id}/`,
@@ -38,6 +47,16 @@ export function private_contract_list(){
   const res = request({
     url: '/service/private/',
     method: 'GET'
+  })
+  return res
+}
+
+export function show_qrcode(url){
+  const res = request({
+    url: '/wechat/api/qrcode',
+    method: 'GET',
+    responseType: 'arraybuffer', 
+    params:{url: url}
   })
   return res
 }

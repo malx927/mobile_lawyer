@@ -84,7 +84,8 @@ export default {
     addPrivateContractInfo(contractInfo){
         private_contract_add(contractInfo).then(res=>{
           if(res.id){
-            this.$router.push(`/private_contract_detail/${res.id}`)
+
+            this.$router.replace(`/private_contract_confirm/${res.id}`)
           }
         }).catch(error => {
           if (error.response) {
