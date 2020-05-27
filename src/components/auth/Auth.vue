@@ -18,16 +18,16 @@ export default {
     const code = this.getQueryString("code")
     if(!code){
       get_auth_code({url: location.href}).then(res=>{
-        if(res.status_code === 200){
-          console.log(res.authorize_url)
-          window.location.href = res.authorize_url
+        if(res.data.status_code === 200){
+          console.log(res.data.authorize_url)
+          window.location.href = res.data.authorize_url
         }
       })
     }else{
       get_auth_openid({code: code}).then(res=>{
-        if(res.status_code === 200){
-          if(res.openid)
-            localStorage.setItem("openid", res.openid)
+        if(res.data.status_code === 200){
+          if(res.data.openid)
+            localStorage.setItem("openid", res.data.openid)
 
           const to_url = localStorage.getItem("to_url")
           this.$router.push(to_url)

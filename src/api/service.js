@@ -51,6 +51,14 @@ export function private_contract_list(){
   return res
 }
 
+export function private_contract_delete(contract_id){
+  const res = request({
+    url: `/service/private/${contract_id}/`,
+    method: 'DELETE'
+  })
+  return res
+}
+
 export function show_qrcode(url){
   const res = request({
     url: '/wechat/api/qrcode',

@@ -1,6 +1,9 @@
 <template>
   <div>
     <van-empty image="error" description="权限不足，无法访问" />
+    <div class="btn-mgn">
+      <van-button block round type="primary" to="/">返回</van-button>
+    </div>
   </div>
 </template>
 
@@ -11,3 +14,6 @@ export default {
   },
 };
 </script>
+<style  scoped>
+
+</style>>

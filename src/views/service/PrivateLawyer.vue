@@ -19,9 +19,11 @@
       </template>
       <p class="van-cell__label">{{contract.name}}【{{contract.id_card}}】</p>
       <p class="van-cell__label" v-if="contract.is_success" >有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
+      <p class="van-cell__label" v-if="contract.is_success" >联系人：{{contract.office_man}}  <span style="padding-left:10px;">电话：{{contract.office_man_tel}}</span></p>
       <template #footer>
         <span style="float:left;">{{contract.office_name}}</span>
-        <van-button size="small" type="primary" :disabled="!contract.is_success" @click="onContractDetail(contract.id, contract.is_success)">合同详情</van-button>
+        <van-button size="mini" type="danger" v-if="!contract.is_success" @click="onContractDelete(contract)">删除</van-button>
+        <van-button size="mini" type="primary" v-if="contract.is_success" @click="onContractDetail(contract.id)">详情</van-button>
       </template>
     </van-panel>
   </div>
@@ -29,7 +31,7 @@
 
 <script>
 import NavBar from "@/components/NavBar"
-import { private_contract_list } from '@/api/service'
+import { private_contract_list, private_contract_delete } from '@/api/service'
 
 export default {
   name: "private",
@@ -48,20 +50,43 @@ export default {
   computed: {},
   methods: {
     onClick() {
-      console.log("0000000000000")
       this.$router.push("/private_contract_add");
     },
-    onContractDetail(contract_id, is_success){
-        console.log(contract_id, is_success)
-        if(!is_success){
-          this.$router.push('/private_contract_update/' + contract_id + '/')  //修改
-        }else{
-            //empty
+    removeContract(contract){
+        for(let index in this.contracts){
+          if(this.contracts[index] == contract){
+            if(index == 0){
+              this.contracts.shift(); 
+              return;
+            }
+            else if(index == this.contracts.length){
+              this.contracts.pop(); 
+              return;
+            }
+            else{
+              this.contracts.splice(index, 1); 
+              return;
+            }
+          }
         }
+    },
+    onContractDelete(contract){
+      console.log(contract)
+      private_contract_delete(contract.id).then(res=>{
+        if(res.status == 204){
+          this.removeContract(contract)
+        }
+
+      }).catch(error=>{
+        console.log(error)
+      })
+    },
+    onContractDetail(contract_id){
+        this.$router.push('/private_contract_detail/' + contract_id + '/')  //修改
     },
     getPrivateContractList(){
       private_contract_list().then(res => {
-        this.contracts = res
+        this.contracts = res.data
         if(this.contracts.length === 0){
           this.$router.replace('/private_contract_add')  
         }

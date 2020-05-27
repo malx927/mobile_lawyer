@@ -31,3 +31,6 @@ html, body, #app{
   border-radius: 12px;
   box-shadow: 0 8px 12px #ebedf0;
 }
+.btn-mgn{
+  padding: 16px;
+}

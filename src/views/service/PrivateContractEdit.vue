@@ -75,17 +75,17 @@ export default {
     // 获取律师信息
     getOfficeInfo(){
       office().then(res => {
-        if(res && res.length > 0){
-          this.office_name = res[0].name
-          this.office_address = res[0].address
+        if(res.data && res.data.length > 0){
+          this.office_name = res.data[0].name
+          this.office_address = res.data[0].address
         }
       })
     },
     addPrivateContractInfo(contractInfo){
         private_contract_add(contractInfo).then(res=>{
-          if(res.id){
+          if(res.data.id){
 
-            this.$router.replace(`/private_contract_confirm/${res.id}`)
+            this.$router.replace(`/private_contract_confirm/${res.data.id}`)
           }
         }).catch(error => {
           if (error.response) {
@@ -100,8 +100,8 @@ export default {
     },
     updatePrivateContractInfo(contractInfo){
       private_contract_update(contractInfo).then(res=>{
-        if(res.id){
-            this.$router.push(`/private_contract_detail/${res.id}`)
+        if(res.data.id){
+            this.$router.push(`/private_contract_detail/${res.data.id}`)
         }
 
       }).catch(error=>{
@@ -119,9 +119,9 @@ export default {
       const openid = localStorage.getItem('openid')
       if(openid){
         get_person_info(openid).then(res => {
-          this.name = res.name
-          this.telephone = res.telephone
-          this.id_card = res.id_card
+          this.name = res.data.name
+          this.telephone = res.data.telephone
+          this.id_card = res.data.id_card
         }).catch(error => {
             if (error.response) {
               console.log("b:", error.response.status);

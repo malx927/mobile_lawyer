@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import moment from 'moment'
 
 import { 
   Button, 
@@ -56,6 +57,7 @@ Vue.use(GridItem);
 Vue.use(VanImage);
 Vue.use(Empty);
 
+Vue.prototype.$moment = moment;
 
 new Vue({
   router,

@@ -16,8 +16,9 @@ import axios from 'axios'
   })
 
   // 2.2.响应拦截
-  instance.interceptors.response.use(res => {
-    return res.data
+  instance.interceptors.response.use(response => {
+    console.log(response, 'interceptors')
+    return response
   }
   // , error => {
   //   // return error

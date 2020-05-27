@@ -9,7 +9,7 @@
       </van-cell>
       <!-- <van-divider /> -->
       <van-cell :title="'合同编号:'+ contract.show_code" :border="false" style="text-align:right;padding-right:1.0rem;font-weight:BOLD;"/>
-      <van-cell title="私人律师合同书" :border="false" style="text-align:center;font-size:42px;font-weight:BOLD;margin-top:6rem;"/>
+      <van-cell title="私人律师合同书" :border="false" style="text-align:center;font-size:42px;font-weight:BOLD;margin-top:6rem;line-height:30px;"/>
       <van-cell :title="contract.office_name" :border="false" style="text-align:center;font-size:24px;font-weight:BOLD;margin-top:14rem;"/>
       <van-cell :title="'地址:' + contract.office_address" :border="false" style="text-align:center;font-size:16px;font-weight:BOLD;"/>
       <van-cell :title="`联系人: ${contract.office_man}   电话: ${contract.office_man_tel}`" :border="false" style="text-align:center;font-size:16px;font-weight:BOLD;"/>
@@ -38,7 +38,7 @@
         <van-cell title="2、代理甲方诉讼、仲裁、执行案件等相关法律事务根据诉讼标的额另行收费（收费参照辽宁省律师协会法律服务收费标准）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="3、乙方律师以甲方代理人身份在外市、县参与工作和诉讼、仲裁、调解等相关服务所发生的交通费、住宿费、餐费由甲方实报实销。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="五、本合同经双方签字（盖章）后生效，合同生效后双方应严格遵守，履行过程中发生纠纷由双方协商解决，协商不成向葫芦岛仲裁委员会提起仲裁。"  style="font-size:14px;line-height:30px;"/>
-        <van-cell :title="`六、本合同有效期自${contract.start_date}起至${contract.end_date}止。`"  style="font-size:14px;"/>
+        <van-cell :title="`六、本合同有效期自${contract.fmt_start_date}起至${contract.fmt_end_date}止。`"  style="font-size:14px;"/>
         <van-cell title="七、本合同正本一式二份，双方各执一份，具有同等法律效力。"  style="font-size:14px;"/>
         <van-cell title=""  style="font-size:14px;height:50px;"/>
         <van-cell  style="font-size:14px;margin-top:0px;">
@@ -50,13 +50,13 @@
         <van-cell  style="font-size:14px;">
           <template #title>
             <span>电话号码：{{contract.telephone}}</span>
-            <span style="padding-left:1.8rem;">电话号码：{{contract.office_tel}}</span>
+            <span style="padding-left:1.0rem;">电话号码：{{contract.office_tel}}</span>
           </template>
         </van-cell>
-        <van-cell :title="`签订日期：${contract.start_date}`"  style="font-size:14px;margin-top:20px;text-align:right;padding-right:20px;margin-bottom:30px;"/>
+        <van-cell :title="`签订日期：${contract.fmt_start_date}`"  style="font-size:14px;margin-top:20px;text-align:right;padding-right:20px;margin-bottom:30px;"/>
     </van-cell-group>
     <div style="margin:16px;">
-      <van-button round block type="info" @click="onConfirm" v-if="!contract.is_success">合同确认</van-button>
+      <van-button round block type="info" :loading="isLoading" loading-text="处理中..." @click="onConfirm" v-if="!contract.is_success">合同确认</van-button>
     </div>
 
   </div>
@@ -78,8 +78,10 @@ export default {
     return {
       title:this.$route.meta.title,
       logo: logo,
-      isShow: true,
+      isShow: false,
+      isLoading: false,
       contract:{
+        id: 0,
         name: "",
         telephone: "",
         id_card: "",
@@ -100,11 +102,16 @@ export default {
 
   methods: {
     onConfirm(){
-      // info = {
-      //   is_success: true,
-      //   start_date: this.start_date,
-      //   end_date: this.end_date,
-      // }
+      this.isLoading = true
+      const info = {
+          id: this.contract.id,
+          is_success: true,
+          start_date: this.contract.start_date,
+          end_date: this.contract.end_date,
+        }
+      console.log(info)
+      this.ConfirmPrivateContractInfo(info)
+
     },
     nextYear(){
       let date = new Date()
@@ -119,38 +126,39 @@ export default {
       const c_id = this.contract_id   // 合同ID
       private_contract_info(c_id).then(res=>{
         console.log(res)
-        if(res.office_openid == null || res.office_man == null)
+        const data = res.data
+        if(data.office_openid == null || data.office_man == null)
         {
           this.$router.push('/error')
         }else{
-          this.contract.name = res.name
-          this.contract.telephone = res.telephone
-          this.contract.id_card = res.id_card
-          this.contract.office_name = res.office_name
-          this.contract.office_tel = res.office_tel
-          this.contract.office_man = res.office_man
-          this.contract.office_man_tel = res.office_man_tel
-          this.contract.office_address = res.office_address
-          if(res.start_date != null){
-            this.contract.fmt_start_date = this.formatDate(new Date(res.start_date))
-            this.contract.start_date = res.start_date
+          this.contract.id = data.id
+          this.contract.name = data.name
+          this.contract.telephone = data.telephone
+          this.contract.id_card = data.id_card
+          this.contract.office_name = data.office_name
+          this.contract.office_tel = data.office_tel
+          this.contract.office_man = data.office_man
+          this.contract.office_man_tel = data.office_man_tel
+          this.contract.office_address = data.office_address
+          if(data.start_date != null){
+            this.contract.fmt_start_date = this.$moment(new Date(data.start_date)).format("YYYY年MM月DD日")
+            this.contract.start_date = data.start_date
           }
           else{
-            this.contract.fmt_start_date = this.formatDate(new Date())
-            this.contract.start_date = this.formatDate(new Date())
+            this.contract.fmt_start_date = this.$moment(new Date()).format("YYYY年MM月DD日")
+            this.contract.start_date = this.$moment(new Date()).format("YYYY-MM-DD")
           }
-          console.log(this.contract.start_date)
-          if(res.end_date != null){
-            this.contract.fmt_end_date = this.formatDate(new Date(res.end_date))
-            this.contract.end_date = res.end_date
+          if(data.end_date != null){
+            this.contract.fmt_end_date = this.$moment(new Date(data.end_date)).format("YYYY年MM月DD日")
+            this.contract.end_date = data.end_date
           }
           else{
-            this.contract.fmt_end_date = this.formatDate(this.nextYear())
-            this.contract.end_date = this.formatDate(this.nextYear())
+            this.contract.fmt_end_date = this.$moment(this.nextYear()).format("YYYY年MM月DD日")
+            this.contract.end_date = this.$moment(this.nextYear()).format("YYYY-MM-DD")
           }
           console.log(this.contract.end_date)
-          this.contract.is_success = res.is_success
-          this.contract.show_code = res.show_code
+          this.contract.is_success = data.is_success
+          this.contract.show_code = data.show_code
           this.isShow = true  //显示
         }
       }).catch(error=>{
@@ -160,6 +168,12 @@ export default {
     ConfirmPrivateContractInfo(c_info){
       private_contract_confirm(c_info).then(res=>{
         console.log(res)
+        const data = res.data
+        this.is_success = data.is_success
+        if(this.is_success){
+          this.$toast.success('合同确认成功')
+          this.$router.push('/private')
+        }
       }).catch(error=>{
         console.log(error)
       })
