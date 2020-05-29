@@ -68,3 +68,20 @@ export function show_qrcode(url){
   })
   return res
 }
+
+export function get_company_info(openid){
+  const res = request({
+    url: `/service/company/${openid}`,
+    method: 'GET',
+  })
+  return res
+}
+
+export function adviser_contract_add(contractInfo){
+  const res = request({
+    url: '/service/adviser/',
+    method: 'POST',
+    data: contractInfo
+  })
+  return res
+}

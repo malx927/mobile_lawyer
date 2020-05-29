@@ -18,14 +18,12 @@ export default {
     };
   },
 
-  computed: {},
   methods: {
     onClick(){
-      this.$toast('提示文案9999');
+      this.$router.push('/adviser_add')
     }
   },
   created() {},
-  mounted() {}
 };
 </script>
 

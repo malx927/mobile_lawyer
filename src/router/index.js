@@ -71,6 +71,35 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/adviser_add',
+    name: 'adviser_add',
+    meta: {
+      title: '法律顾问增加'
+    },
+    component: () => import('@/views/service/AdviserContractEdit')
+  },
+
+  {
+    path: '/adviser_confirm/:contract_id',
+    name: 'adviser_confirm',
+    props: true,
+    meta: {
+      title: '法律顾问确认'
+    },
+    component: () => import('@/views/service/AdviserContractConfirm')
+  },
+
+  {
+    path: '/adviser_detail/:contract_id',
+    name: 'adviser_detail',
+    props: true,
+    meta: {
+      title: '顾问合同详情'
+    },
+    component: () => import('@/views/service/AdviserContractDetail')
+  },
+
+  {
     path: '/auth',
     name: 'auth',
     component: () => import('@/components/auth/Auth')
