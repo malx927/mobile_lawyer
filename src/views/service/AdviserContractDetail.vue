@@ -65,7 +65,7 @@
 <script>
 import NavBar from '@/components/NavBar'
 import logo from '@/assets/images/logo.png'
-import { private_contract_info, private_contract_confirm } from '@/api/service'
+import { adviser_info, private_contract_confirm } from '@/api/service'
 
 export default {
   components: {
@@ -122,9 +122,9 @@ export default {
     formatDate(date) {
       return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
     },
-    getPrivateContractInfo(){
+    getAdviserContractInfo(){
       const c_id = this.contract_id   // 合同ID
-      private_contract_info(c_id).then(res=>{
+      adviser_info(c_id).then(res=>{
         console.log(res)
         const data = res.data
         if(data.office_openid == null || data.office_man == null)
@@ -180,7 +180,7 @@ export default {
     }
   },
   created() {
-    this.getPrivateContractInfo()
+    this.getAdviserContractInfo()
   },
   mounted() {}
 };
