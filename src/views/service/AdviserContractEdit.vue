@@ -107,7 +107,7 @@ export default {
         adviser_contract_add(contractInfo).then(res=>{
           console.log(res)
           if(res.data.id){
-            this.$router.replace(`/adviser_confirm/${res.data.id}`)
+            this.$router.replace(`/adviser_amount/${res.data.id}`)
           }
         }).catch(error => {
           if (error.response) {

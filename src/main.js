@@ -26,7 +26,8 @@ import {
   Grid, 
   GridItem,
   Empty,
-
+  RadioGroup, 
+  Radio,
  } from 'vant';
 
  import { Image as VanImage } from 'vant';
@@ -56,6 +57,8 @@ Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(VanImage);
 Vue.use(Empty);
+Vue.use(Radio);
+Vue.use(RadioGroup);
 
 Vue.prototype.$moment = moment;
 

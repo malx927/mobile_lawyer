@@ -80,6 +80,9 @@ export default {
           console.log(error.config);
       })
     },
+    onContractDetail(contract_id){
+        this.$router.push(`/adviser_detail/${contract_id}`)  //修改
+    },
     onContractDelete(contract){
       console.log(contract)
       adviser_contract_delete(contract.id).then(res=>{

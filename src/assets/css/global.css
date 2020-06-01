@@ -34,3 +34,7 @@ html, body, #app{
 .btn-mgn{
   padding: 16px;
 }
+
+#amount .van-radio__label{
+  width:100%!important;
+}

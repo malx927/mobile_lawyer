@@ -80,6 +80,16 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/adviser_amount/:contract_id',
+    name: 'adviser_amount',
+    props: true,
+    meta: {
+      title: '法律顾问金额确认'
+    },
+    component: () => import('@/views/service/AdviserAmountList')
+  },
+
+  {
     path: '/adviser_confirm/:contract_id',
     name: 'adviser_confirm',
     props: true,

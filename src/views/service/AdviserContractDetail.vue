@@ -9,50 +9,57 @@
       </van-cell>
       <!-- <van-divider /> -->
       <van-cell :title="'合同编号:'+ contract.show_code" :border="false" style="text-align:right;padding-right:1.0rem;font-weight:BOLD;"/>
-      <van-cell title="私人律师合同书" :border="false" style="text-align:center;font-size:42px;font-weight:BOLD;margin-top:6rem;line-height:30px;"/>
+      <van-cell title="法律顾问合同书" :border="false" style="text-align:center;font-size:42px;font-weight:BOLD;margin-top:6rem;line-height:30px;"/>
       <van-cell :title="contract.office_name" :border="false" style="text-align:center;font-size:24px;font-weight:BOLD;margin-top:14rem;"/>
       <van-cell :title="'地址:' + contract.office_address" :border="false" style="text-align:center;font-size:16px;font-weight:BOLD;"/>
       <van-cell :title="`联系人: ${contract.office_man}   电话: ${contract.office_man_tel}`" :border="false" style="text-align:center;font-size:16px;font-weight:BOLD;"/>
 
       <van-divider style="margin-bottom:30px;margin-top:30px;"/>
-      <van-cell :border="false" style="font-size:14px;margin-top:50px;">
-        <template #title>
-          <span>甲方: {{contract.name}}</span>
-          <span style="padding-left:1.8rem;">身份证: {{contract.id_card}}</span>
-        </template>
-      </van-cell>
+      <van-cell :title="`甲方：${contract.name}`"  style="font-size:14px;"/>
        <van-cell :title="`乙方：${contract.office_name}`"  style="font-size:14px;"/>
-       <van-cell  style="font-size:14px;text-indent:2em;line-height:30px;" title="根据《中华人民共和国律师法》、《合同法》的相关规定，就甲方聘请乙方律师事务所为常年私人律师事宜，经双方协商达成一致意见，订立本合同。" :border="false"/>
-        <van-cell title="一、乙方接受甲方聘请，担任甲方常年私人律师。"  style="font-size:14px;"/>
+       <van-cell  style="font-size:14px;text-indent:2em;line-height:30px;" title="根据《中华人民共和国律师法》、《合同法》的相关规定，就甲方聘请乙方律师事务所为常年法律顾问事宜，经双方协商达成一致意见，订立本合同。" :border="false"/>
+        <van-cell title="一、乙方接受甲方聘请，担任甲方常年法律顾问。"  style="font-size:14px;"/>
         
-        <van-cell title="二、私人律师工作职责范围"  style="font-size:14px;"/>
+        <van-cell title="二、法律顾问工作职责范围"  style="font-size:14px;"/>
         <van-cell title="1、解答法律咨询，为甲方决策提供法律意见。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="2、协助甲方解决个人法律问题，调解和谈判（限在本所内）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
-        <van-cell title="3、代书法律文书（合同书、起诉状、答辩状、申请书）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="3、代书法律文书（合同书、起诉状、答辩状、申请书、律师函）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="4、审查、起草企业对外合同。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
 
         <van-cell title="三、工作方式"  style="font-size:14px;"/>
-        <van-cell title="乙方律师事务所安排律师与甲方保持经常性联系，乙方有事可随时与私人律师联系。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="乙方律师事务所安排人员与甲方保持经常性联系，乙方有事可随时与联系人联络。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
 
         <van-cell title="四、费用及支付办法" style="font-size:14px;"/>
-        <van-cell title="1、私人律师从事本协议第二条服务内容费用为365元/年。" style="font-size:14px;text-indent:2em;line-height:30px;"/>
-        <van-cell title="2、代理甲方诉讼、仲裁、执行案件等相关法律事务根据诉讼标的额另行收费（收费参照辽宁省律师协会法律服务收费标准）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
-        <van-cell title="3、乙方律师以甲方代理人身份在外市、县参与工作和诉讼、仲裁、调解等相关服务所发生的交通费、住宿费、餐费由甲方实报实销。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
-        <van-cell title="五、本合同经双方签字（盖章）后生效，合同生效后双方应严格遵守，履行过程中发生纠纷由双方协商解决，协商不成向葫芦岛仲裁委员会提起仲裁。"  style="font-size:14px;line-height:30px;"/>
+        <van-cell title="1、一次性支付顾问费用。" style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="2、代理甲方诉讼、仲裁、执行案件（由乙方审查、起草企业对外合同对律师费有约定的）费用由对方承担，不由甲方承担。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="3、代理甲方诉讼、仲裁、执行案件（未经乙方审查、起草企业对外合同对律师费有约定的）等相关法律事务根据诉讼标的额另行收费（收费参照辽宁省律师协会法律服务收费标准）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="4、乙方律师以甲方代理人身份在外市、县参与工作和诉讼、仲裁、调解等相关服务所发生的交通费、住宿费、餐费由甲方实报实销。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell title="本合同经双方签字（盖章）后生效，合同生效后双方应严格遵守，履行过程中发生纠纷由双方协商解决，协商不成向葫芦岛仲裁委员会提起仲裁。"  style="font-size:14px;line-height:30px;"/>
         <van-cell :title="`六、本合同有效期自${contract.fmt_start_date}起至${contract.fmt_end_date}止。`"  style="font-size:14px;"/>
         <van-cell title="七、本合同正本一式二份，双方各执一份，具有同等法律效力。"  style="font-size:14px;"/>
-        <van-cell title=""  style="font-size:14px;height:50px;"/>
+        <van-cell title=""  style="font-size:14px;height:30px;"/>
+
+        <van-cell :title="`甲方：${contract.name}`"  style="font-size:14px;"/>
+        <van-cell :title="`信用代码：${contract.credit_code}`"  style="font-size:14px;"/>
+        <van-cell :title="`公司地址：${contract.address}`"  style="font-size:14px;"/>
         <van-cell  style="font-size:14px;margin-top:0px;">
           <template #title>
-            <span>甲方: {{contract.name}}</span>
-            <span style="padding-left:1.8rem;">乙方：{{contract.office_name}}</span>
+            <span>法定代表人: {{contract.legal_person}}</span>
+            <span style="padding-left:1.8rem;">联系方式：{{contract.telephone}}</span>
           </template>
         </van-cell>
         <van-cell  style="font-size:14px;">
           <template #title>
-            <span>电话号码：{{contract.telephone}}</span>
-            <span style="padding-left:1.0rem;">电话号码：{{contract.office_tel}}</span>
+            <span>联系人：{{contract.contact_person}}</span>
+            <span style="padding-left:1.8rem;">联系方式：{{contract.contact_tel}}</span>
           </template>
         </van-cell>
+
+        <van-cell :title="`乙方：${contract.office_name}`"  style="font-size:14px;"/>
+        <van-cell :title="`信用代码：${contract.office_code}`"  style="font-size:14px;"/>
+        <van-cell :title="`公司地址：${contract.office_address}`"  style="font-size:14px;"/>
+        <van-cell :title="`联系电话：${contract.office_tel}`"  style="font-size:14px;"/>
+
         <van-cell :title="`签订日期：${contract.fmt_start_date}`"  style="font-size:14px;margin-top:20px;text-align:right;padding-right:20px;margin-bottom:30px;"/>
     </van-cell-group>
     <div style="margin:16px;">
@@ -65,7 +72,7 @@
 <script>
 import NavBar from '@/components/NavBar'
 import logo from '@/assets/images/logo.png'
-import { adviser_info, private_contract_confirm } from '@/api/service'
+import { adviser_info, adviser_confirm } from '@/api/service'
 
 export default {
   components: {
@@ -84,12 +91,17 @@ export default {
         id: 0,
         name: "",
         telephone: "",
-        id_card: "",
+        credit_code: "",
+        address:"",
+        legal_person: "",
+        contact_person: "",
+        contact_tel: "",
         office_name: "",
         office_tel: "",
         office_man: "",
         office_man_tel: "",
         office_address: "",
+        office_code: "",
         start_date: "",
         fmt_start_date: "",
         end_date: "",
@@ -110,7 +122,7 @@ export default {
           end_date: this.contract.end_date,
         }
       console.log(info)
-      this.ConfirmPrivateContractInfo(info)
+      this.ConfirmAdviserContractInfo(info)
 
     },
     nextYear(){
@@ -134,12 +146,19 @@ export default {
           this.contract.id = data.id
           this.contract.name = data.name
           this.contract.telephone = data.telephone
-          this.contract.id_card = data.id_card
+          this.contract.credit_code = data.credit_code
+          this.contract.legal_person = data.legal_person
+          this.contract.contact_person = data.contact_person
+          this.contract.contact_tel = data.contact_tel
+          this.contract.address = data.address
+
           this.contract.office_name = data.office_name
           this.contract.office_tel = data.office_tel
           this.contract.office_man = data.office_man
           this.contract.office_man_tel = data.office_man_tel
           this.contract.office_address = data.office_address
+          this.contract.office_code = data.office_code
+
           if(data.start_date != null){
             this.contract.fmt_start_date = this.$moment(new Date(data.start_date)).format("YYYY年MM月DD日")
             this.contract.start_date = data.start_date
@@ -165,14 +184,14 @@ export default {
         console.log(error)
       })
     },
-    ConfirmPrivateContractInfo(c_info){
-      private_contract_confirm(c_info).then(res=>{
+    ConfirmAdviserContractInfo(c_info){
+      adviser_confirm(c_info).then(res=>{
         console.log(res)
         const data = res.data
         this.is_success = data.is_success
         if(this.is_success){
           this.$toast.success('合同确认成功')
-          this.$router.push('/private')
+          this.$router.push('/adviser')
         }
       }).catch(error=>{
         console.log(error)

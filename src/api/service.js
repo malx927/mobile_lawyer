@@ -110,3 +110,32 @@ export function adviser_info(contract_id){
   })
   return res
 }
+
+// 合同金额列表
+export function adviser_amount_list(){
+  const res = request({
+    url: '/service/amount/',
+    method: 'GET',
+  })
+  return res
+}
+
+// 法律顾问金额更新
+export function adviser_amount_update(contractInfo){
+  const res = request({
+    url: `/service/adviser/${contractInfo.id}/`,
+    method: 'PATCH',
+    data: contractInfo
+  })
+  return res
+}
+
+// 法律顾问确认
+export function adviser_confirm(contractInfo){
+  const res = request({
+    url: `/service/adviser/${contractInfo.id}/`,
+    method: 'PATCH',
+    data: contractInfo
+  })
+  return res
+}
