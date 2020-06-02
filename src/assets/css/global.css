@@ -38,3 +38,8 @@ html, body, #app{
 #amount .van-radio__label{
   width:100%!important;
 }
+
+#home .van-grid-item__text{
+  color: #2F2B2B;
+  font-size: 14px;
+}

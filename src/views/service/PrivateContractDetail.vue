@@ -162,7 +162,15 @@ export default {
           this.isShow = true  //显示
         }
       }).catch(error=>{
-        console.log(error)
+          if (error.response) {
+            console.log("a:", error.response.data);
+            console.log("b:", error.response.status);
+            console.log("c:", error.response.headers);
+          } else if (error.request) {
+            console.log(error.request);
+          } else {
+            console.log('Error', error.message);
+          }
       })
     },
     ConfirmPrivateContractInfo(c_info){

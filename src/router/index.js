@@ -10,7 +10,7 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     meta:{
-      title: '首页'
+      title: '靳世祥律师事务所'
     },
     component: Home
   },
@@ -107,6 +107,16 @@ Vue.use(VueRouter)
       title: '顾问合同详情'
     },
     component: () => import('@/views/service/AdviserContractDetail')
+  },
+
+  {
+    path: '/agency/',
+    name: 'agency',
+    props: true,
+    meta: {
+      title: '代理授权'
+    },
+    component: () => import('@/views/service/agency')
   },
 
   {

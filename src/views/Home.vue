@@ -1,33 +1,70 @@
 <template>
-  <div class="home">
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" :height="400">
+  <div class="home" id="home">
+    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="gray" :height="240">
       <van-swipe-item v-for="(image, index) in images" :key="index">
-        <img v-lazy="image" />
+        <img v-lazy="image.image" />
       </van-swipe-item>
     </van-swipe>
-    <van-row type="flex" justify="space-around">
-      <van-col span="12" >
-        <van-button to="/private" icon="vip-card-o" type="primary" >私人律师</van-button>
-        </van-col>
-      <van-col span="12">
-        <van-button to="/adviser" icon="friends-o" type="primary" >法律顾问</van-button>
-      </van-col>
-    </van-row>
+    <van-grid :column-num="3"  icon-size="35px">
+      <van-grid-item text="私人律师" to="/private" >
+        <template #icon>
+          <van-image  round   width="50" height="50"  :src="private_img" />
+        </template>
+      </van-grid-item>
+      <van-grid-item text="法律顾问" to="/adviser">
+        <template #icon>
+          <van-image  round   width="50" height="50"  :src="adviser_img" />
+        </template>
+      </van-grid-item>
+      <van-grid-item icon="setting-o" text="代理授权" to="/agency">
+        <template #icon>
+          <van-image  round   width="50" height="50"  :src="agency_img" />
+        </template>
+      </van-grid-item>
+
+      <!-- <van-grid-item text="私人律师" to="/private">
+      <template #icon>
+        <div class="grid_img">
+            <van-icon name="chat-o" color="#fff" size="40" />
+        </div>
+        </template>
+      </van-grid-item> -->
+    </van-grid>
+
   </div>
 </template>
 
 <script>
+import agency from '@/assets/images/agency_red.png'
+import adviser from '@/assets/images/adviser_green.png'
+import privates from '@/assets/images/private_blue.png'
+
+import { get_swipe_list } from '@/api/wechat'
 export default {
   name: "Home",
   components: {},
   data() {
     return {
-      title:this.$route.meta.title,
-      images: [
-        "https://img.yzcdn.cn/vant/apple-1.jpg",
-        "https://img.yzcdn.cn/vant/apple-2.jpg"
-      ]
+      title:this.$route.meta.title||"",
+      images: [],
+      agency_img: agency,
+      adviser_img: adviser,
+      private_img: privates,
     };
+  },
+  methods:{
+    getSwipeList(){
+      get_swipe_list().then(res=>{
+        console.log(res)
+        this.images = res.data
+      }).catch(error=>{
+        console.log(error);
+        
+      })
+    }
+  },
+  created(){
+    this.getSwipeList()
   }
 };
 </script>
@@ -48,6 +85,21 @@ export default {
 .van-col{
   text-align: center;
 }
+.grid_img{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width:3.5rem;
+    height: 3.5rem;
+    border-radius:50%;
+    padding: 8px 8px;
+    background-color: #fff;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    margin-bottom: 8px;
+}
+
 </style>>
 
 
