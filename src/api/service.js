@@ -139,3 +139,32 @@ export function adviser_confirm(contractInfo){
   })
   return res
 }
+
+// 代理授权
+export function agency_company_info(openid){
+  const res = request({
+    url: `/service/agency/${openid}/`,
+    method: 'GET'
+  })
+  return res
+}
+
+// 代理授权增加
+export function agency_company_add(companyInfo){
+  const res = request({
+    url: `/service/agency/`,
+    method: 'POST',
+    data: companyInfo
+  })
+  return res
+}
+
+// 代理授权修改
+export function agency_company_update(companyInfo){
+  const res = request({
+    url: `/service/agency/${companyInfo.openid}/`,
+    method: 'PATCH',
+    data: companyInfo
+  })
+  return res
+}
