@@ -78,7 +78,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 1.0rem 1.0rem;
+  padding: 0rem 0rem;
   background-color: #fff;
   pointer-events: none;
 }
