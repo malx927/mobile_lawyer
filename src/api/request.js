@@ -2,7 +2,7 @@ import axios from 'axios'
 
   // 1.创建axios的实例
   const instance = axios.create({
-    baseURL: 'http://mlx.wx.xzls.vip/api',
+    baseURL: 'http://wx.xzls.vip/api',
     withCredentials: true,
     timeout: 5000
   })
