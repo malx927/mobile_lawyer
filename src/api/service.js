@@ -162,9 +162,18 @@ export function agency_company_add(companyInfo){
 // 代理授权修改
 export function agency_company_update(companyInfo){
   const res = request({
-    url: `/service/agency/${companyInfo.openid}/`,
+    url: `/service/agency/${companyInfo.id}/`,
     method: 'PATCH',
     data: companyInfo
+  })
+  return res
+}
+
+// 代理授权修改
+export function agency_company_confirm(company_id){
+  const res = request({
+    url: `/service/agency/${company_id}/`,
+    method: 'GET',
   })
   return res
 }

@@ -201,7 +201,6 @@ export default {
   created() {
     this.getAdviserContractInfo()
   },
-  mounted() {}
 };
 </script>
 

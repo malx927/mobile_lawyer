@@ -120,6 +120,26 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/agency_confirm/:company_id',
+    name: 'agency_confirm',
+    props: true,
+    meta: {
+      title: '代理授权确认'
+    },
+    component: () => import('@/views/service/agency/AgencyConfirm')
+  },
+
+  {
+    path: '/agency_detail/:company_id',
+    name: 'agency_detail',
+    props: true,
+    meta: {
+      title: '代理授权详情'
+    },
+    component: () => import('@/views/service/agency/AgencyDetail')
+  },
+
+  {
     path: '/auth',
     name: 'auth',
     component: () => import('@/components/auth/Auth')
