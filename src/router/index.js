@@ -142,6 +142,9 @@ Vue.use(VueRouter)
   {
     path: '/auth',
     name: 'auth',
+    meta: {
+      title: '用户授权'
+    },
     component: () => import('@/components/auth/Auth')
   },
 
