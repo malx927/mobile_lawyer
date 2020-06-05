@@ -40,7 +40,6 @@ export default {
   created() {
     this.getQRCode()
   },
-  mounted() {}
 };
 </script>
 

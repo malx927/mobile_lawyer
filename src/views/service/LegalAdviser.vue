@@ -66,7 +66,7 @@ export default {
       adviser_contract_list().then(res => {
         this.contracts = res.data
         if(this.contracts.length === 0){
-          this.$router.replace('/adviser_contract_add')  
+          this.$router.replace('/adviser_add')  
         }
           
       }).catch(error => {
