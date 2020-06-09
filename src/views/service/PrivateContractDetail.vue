@@ -34,7 +34,7 @@
         <van-cell title="乙方律师事务所安排律师与甲方保持经常性联系，乙方有事可随时与私人律师联系。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
 
         <van-cell title="四、费用及支付办法" style="font-size:14px;"/>
-        <van-cell title="1、私人律师从事本协议第二条服务内容费用为365元/年。" style="font-size:14px;text-indent:2em;line-height:30px;"/>
+        <van-cell :title="`1、私人律师从事本协议第二条服务内容费用为${contract.money}元/年。`" style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="2、代理甲方诉讼、仲裁、执行案件等相关法律事务根据诉讼标的额另行收费（收费参照辽宁省律师协会法律服务收费标准）。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="3、乙方律师以甲方代理人身份在外市、县参与工作和诉讼、仲裁、调解等相关服务所发生的交通费、住宿费、餐费由甲方实报实销。"  style="font-size:14px;text-indent:2em;line-height:30px;"/>
         <van-cell title="五、本合同经双方签字（盖章）后生效，合同生效后双方应严格遵守，履行过程中发生纠纷由双方协商解决，协商不成向葫芦岛仲裁委员会提起仲裁。"  style="font-size:14px;line-height:30px;"/>
@@ -85,6 +85,7 @@ export default {
         name: "",
         telephone: "",
         id_card: "",
+        money: 0,
         office_name: "",
         office_tel: "",
         office_man: "",
@@ -135,6 +136,7 @@ export default {
           this.contract.name = data.name
           this.contract.telephone = data.telephone
           this.contract.id_card = data.id_card
+          this.contract.money = data.money
           this.contract.office_name = data.office_name
           this.contract.office_tel = data.office_tel
           this.contract.office_man = data.office_man

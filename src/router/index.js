@@ -32,6 +32,16 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/private_amount_list/:contract_id',
+    name: 'private_amount_list',
+    props: true,
+    meta: {
+      title: '私人律师合同金额'
+    },
+    component: () => import('@/views/service/PrivateAmountList')
+  },
+
+  {
     path: '/private_contract_update/:contract_id',
     name: 'private_contract_update',
     props: true,

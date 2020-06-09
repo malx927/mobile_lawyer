@@ -16,7 +16,7 @@
           <van-image  round   width="50" height="50"  :src="adviser_img" />
         </template>
       </van-grid-item>
-      <van-grid-item icon="setting-o" text="代理授权" to="/agency">
+      <van-grid-item v-if="member_role" icon="setting-o" text="代理授权" to="/agency">
         <template #icon>
           <van-image  round   width="50" height="50"  :src="agency_img" />
         </template>
@@ -40,12 +40,15 @@ import adviser from '@/assets/images/adviser_green.png'
 import privates from '@/assets/images/private_blue.png'
 
 import { get_swipe_list } from '@/api/wechat'
+import { get_role } from '@/api/role'
+
 export default {
   name: "Home",
   components: {},
   data() {
     return {
       title:this.$route.meta.title||"",
+      member_role: false,
       images: [],
       agency_img: agency,
       adviser_img: adviser,
@@ -61,9 +64,25 @@ export default {
         console.log(error);
         
       })
+    },
+    getUserRole(){
+      let openid = localStorage.getItem("openid")
+      get_role(openid).then(res=>{
+          console.log(res);
+          this.member_role = res.data.member_role === 1 || res.data.member_role == 3
+          if(res.data.member_role == null) 
+            sessionStorage.setItem("member_role", 0)
+          else
+            sessionStorage.setItem("member_role", res.data.member_role)
+            
+          console.log(this.member_role)
+      }).catch(error=>{
+          console.log(error);
+      })
     }
   },
   created(){
+    this.getUserRole()
     this.getSwipeList()
   }
 };

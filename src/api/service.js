@@ -20,7 +20,7 @@ export function private_contract_add(contractInfo){
 export function private_contract_update(contractInfo){
   const res = request({
     url: `/service/private/${contractInfo.id}/`,
-    method: 'PUT',
+    method: 'PATCH',
     data: contractInfo
   })
   return res
@@ -173,6 +173,15 @@ export function agency_company_update(companyInfo){
 export function agency_company_confirm(company_id){
   const res = request({
     url: `/service/agency/${company_id}/`,
+    method: 'GET',
+  })
+  return res
+}
+
+// 私人律师合同金额列表
+export function private_amount_list(){
+  const res = request({
+    url: '/service/pri_amount/',
     method: 'GET',
   })
   return res

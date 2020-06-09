@@ -65,6 +65,10 @@ Vue.use(Notify);
 
 Vue.prototype.$moment = moment;
 
+window.addEventListener('popstate', function(){
+  router.isBack = true
+}, false)
+
 new Vue({
   router,
   store,
