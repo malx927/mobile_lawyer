@@ -74,7 +74,7 @@ export default {
             sessionStorage.setItem("member_role", 0)
           else
             sessionStorage.setItem("member_role", res.data.member_role)
-            
+
           console.log(this.member_role)
       }).catch(error=>{
           console.log(error);
@@ -82,7 +82,7 @@ export default {
     }
   },
   created(){
-    this.getUserRole()
+    // this.getUserRole()
     this.getSwipeList()
   }
 };

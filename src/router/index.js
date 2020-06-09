@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-// import Auth from '@/components/auth/Auth'
+import { get_role } from '@/api/role'
 
 Vue.use(VueRouter)
 
@@ -150,6 +150,15 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/user',
+    name: 'user',
+    meta: {
+      title: '用户信息'
+    },
+    component: () => import('@/views/users')
+  },
+
+  {
     path: '/auth',
     name: 'auth',
     meta: {
@@ -186,6 +195,11 @@ router.beforeEach((to, from, next) => {
       next('/auth')
     }
   }else{
+    get_role(openid).then(res=>{
+      console.log(res);
+    }).catch(error=>{
+      console.log(error);
+    })
     next()
   }
 
