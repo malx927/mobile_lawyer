@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav-bar :title="title" :isShow="false"></nav-bar>
-    <van-cell title="代理授权确认" value="出示授权人员扫描确认"></van-cell>
+    <van-cell title="代理授权确认" value="出示给第三方扫描确认"></van-cell>
     <img :src="img_url" style="width:100%;height:20rem;"/>
     <h3 style="text-align:center;">代理授权确认二维码</h3>
   </div>

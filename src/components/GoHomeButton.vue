@@ -1,7 +1,7 @@
 <template>
   <div>
   <div style="margin: 16px;">
-      <van-button round block type="info" to="/">返回</van-button>
+      <van-button round block type="info" to="/">返回首页</van-button>
    </div>
   </div>
 </template>

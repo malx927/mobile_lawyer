@@ -140,10 +140,19 @@ export function adviser_confirm(contractInfo){
   return res
 }
 
-// 代理授权
-export function agency_company_info(openid){
+// 代理授权公司列表
+export function agency_company_list(){
   const res = request({
-    url: `/service/agency/${openid}/`,
+    url: '/service/agency/',
+    method: 'GET'
+  })
+  return res
+}
+
+// 代理授权
+export function agency_company_info(company_id){
+  const res = request({
+    url: `/service/agency/${company_id}/`,
     method: 'GET'
   })
   return res

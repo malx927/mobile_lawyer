@@ -82,7 +82,7 @@ export default {
     }
   },
   created(){
-    // this.getUserRole()
+    this.getUserRole()
     this.getSwipeList()
   }
 };

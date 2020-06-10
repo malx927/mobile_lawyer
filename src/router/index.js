@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import { get_role } from '@/api/role'
 
 Vue.use(VueRouter)
 
@@ -130,6 +129,27 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/agency_add/',
+    name: 'agency_add',
+    props: true,
+    meta: {
+      title: '代理授权添加'
+    },
+    component: () => import('@/views/service/agency/AgencyAdd')
+  },
+
+  {
+    path: '/agency_update/:company_id',
+    name: 'agency_update',
+    props: true,
+    meta: {
+      title: '代理授权修改'
+    },
+    component: () => import('@/views/service/agency/AgencyAdd')
+  },
+
+
+  {
     path: '/agency_confirm/:company_id',
     name: 'agency_confirm',
     props: true,
@@ -195,11 +215,7 @@ router.beforeEach((to, from, next) => {
       next('/auth')
     }
   }else{
-    get_role(openid).then(res=>{
-      console.log(res);
-    }).catch(error=>{
-      console.log(error);
-    })
+
     next()
   }
 

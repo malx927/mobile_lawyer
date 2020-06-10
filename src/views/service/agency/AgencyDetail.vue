@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     onClick(){
-      this.$router.go(-1)
+      this.$router.push("/")
     },
     AgencyConfirm(company_id){
       agency_company_confirm(company_id).then(res=>{
@@ -115,7 +115,12 @@ export default {
         this.contact_person = res.data.contact_person
         this.contact_tel = res.data.contact_tel
         this.is_agency = res.data.is_agency
-        this.$notify({ type: 'success', message: '授权成功' })
+        if(this.is_agency === 1){
+          this.$notify({ type: 'success', message: '授权成功' })
+        }else{
+          this.$notify({ type: 'warning', message: '授权失败' })
+        }
+        
       }).catch(error=>{
         console.log(error);
         this.$notify({ type: 'warning', message: '授权失败' })
