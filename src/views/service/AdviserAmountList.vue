@@ -5,7 +5,7 @@
       <van-field name="money" :rules="[{ required: true, message: '请选择金额' }]">
         <template #input>
           <van-radio-group v-model="money" direction="vertical">
-            <van-radio v-for="amount in amounts" :key="amount.id" :name="amount.money">
+            <van-radio v-for="amount in amounts" :key="amount.id" :name="amount.money" :disabled="is_disabled(amount.category)">
               {{amount.money}}
               <span style="float:right">{{amount.desc}}</span>
             </van-radio>
@@ -34,13 +34,28 @@ export default {
   data() {
     return {
       title: this.$route.meta.title,
+      member_role: sessionStorage.getItem("member_role"),
       money: 0,
       amounts: []
     };
   },
 
-  computed: {},
+  computed: {
+
+  },
   methods: {
+    is_disabled(category){
+      if(this.member_role != "2" ){
+        return false
+      }else if( this.member_role == "2"){
+        if(category === 1)
+          return false
+        else{
+          return true
+        }
+      }
+      return false
+    },
     onSubmit(values) {
       // const openid = localStorage.getItem("openid")
       values["id"] = this.contract_id

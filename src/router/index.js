@@ -113,9 +113,19 @@ Vue.use(VueRouter)
     name: 'adviser_detail',
     props: true,
     meta: {
-      title: '顾问合同详情'
+      title: '法律顾问合同详情'
     },
     component: () => import('@/views/service/AdviserContractDetail')
+  },
+
+  {
+    path: '/adviser_detail3/:contract_id',
+    name: 'adviser_detail3',
+    props: true,
+    meta: {
+      title: '法律顾问合同详情'
+    },
+    component: () => import('@/views/service/AdviserContractDetail3')
   },
 
   {

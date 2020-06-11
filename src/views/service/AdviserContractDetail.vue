@@ -143,42 +143,47 @@ export default {
         {
           this.$router.push('/error')
         }else{
-          this.contract.id = data.id
-          this.contract.name = data.name
-          this.contract.telephone = data.telephone
-          this.contract.credit_code = data.credit_code
-          this.contract.legal_person = data.legal_person
-          this.contract.contact_person = data.contact_person
-          this.contract.contact_tel = data.contact_tel
-          this.contract.address = data.address
 
-          this.contract.office_name = data.office_name
-          this.contract.office_tel = data.office_tel
-          this.contract.office_man = data.office_man
-          this.contract.office_man_tel = data.office_man_tel
-          this.contract.office_address = data.office_address
-          this.contract.office_code = data.office_code
+          if(data.category === 1 ){
+            this.$router.replace(`/adviser_detail3/${data.id}`)
+          }else{
+            this.contract.id = data.id
+            this.contract.name = data.name
+            this.contract.telephone = data.telephone
+            this.contract.credit_code = data.credit_code
+            this.contract.legal_person = data.legal_person
+            this.contract.contact_person = data.contact_person
+            this.contract.contact_tel = data.contact_tel
+            this.contract.address = data.address
 
-          if(data.start_date != null){
-            this.contract.fmt_start_date = this.$moment(new Date(data.start_date)).format("YYYY年MM月DD日")
-            this.contract.start_date = data.start_date
+            this.contract.office_name = data.office_name
+            this.contract.office_tel = data.office_tel
+            this.contract.office_man = data.office_man
+            this.contract.office_man_tel = data.office_man_tel
+            this.contract.office_address = data.office_address
+            this.contract.office_code = data.office_code
+
+            if(data.start_date != null){
+              this.contract.fmt_start_date = this.$moment(new Date(data.start_date)).format("YYYY年MM月DD日")
+              this.contract.start_date = data.start_date
+            }
+            else{
+              this.contract.fmt_start_date = this.$moment(new Date()).format("YYYY年MM月DD日")
+              this.contract.start_date = this.$moment(new Date()).format("YYYY-MM-DD")
+            }
+            if(data.end_date != null){
+              this.contract.fmt_end_date = this.$moment(new Date(data.end_date)).format("YYYY年MM月DD日")
+              this.contract.end_date = data.end_date
+            }
+            else{
+              this.contract.fmt_end_date = this.$moment(this.nextYear()).format("YYYY年MM月DD日")
+              this.contract.end_date = this.$moment(this.nextYear()).format("YYYY-MM-DD")
+            }
+            console.log(this.contract.end_date)
+            this.contract.is_success = data.is_success
+            this.contract.show_code = data.show_code
+            this.isShow = true  //显示
           }
-          else{
-            this.contract.fmt_start_date = this.$moment(new Date()).format("YYYY年MM月DD日")
-            this.contract.start_date = this.$moment(new Date()).format("YYYY-MM-DD")
-          }
-          if(data.end_date != null){
-            this.contract.fmt_end_date = this.$moment(new Date(data.end_date)).format("YYYY年MM月DD日")
-            this.contract.end_date = data.end_date
-          }
-          else{
-            this.contract.fmt_end_date = this.$moment(this.nextYear()).format("YYYY年MM月DD日")
-            this.contract.end_date = this.$moment(this.nextYear()).format("YYYY-MM-DD")
-          }
-          console.log(this.contract.end_date)
-          this.contract.is_success = data.is_success
-          this.contract.show_code = data.show_code
-          this.isShow = true  //显示
         }
       }).catch(error=>{
         console.log(error)

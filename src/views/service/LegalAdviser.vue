@@ -65,7 +65,8 @@ export default {
     getAdviserContractList(){
       adviser_contract_list().then(res => {
         this.contracts = res.data
-        if(this.contracts.length === 0){
+        let member_role = sessionStorage.getItem('member_role')
+        if(this.contracts.length === 0 && member_role === "0"){
           this.$router.replace('/adviser_add')  
         }
           

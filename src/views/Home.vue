@@ -58,7 +58,6 @@ export default {
   methods:{
     getSwipeList(){
       get_swipe_list().then(res=>{
-        console.log(res)
         this.images = res.data
       }).catch(error=>{
         console.log(error);
@@ -68,7 +67,6 @@ export default {
     getUserRole(){
       let openid = localStorage.getItem("openid")
       get_role(openid).then(res=>{
-          console.log(res);
           this.member_role = res.data.member_role === 1 || res.data.member_role == 3
           if(res.data.member_role == null) 
             sessionStorage.setItem("member_role", 0)
