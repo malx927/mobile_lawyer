@@ -6,7 +6,7 @@
         <template #input>
           <van-radio-group v-model="money" direction="vertical">
             <van-radio v-for="amount in amounts" :key="amount.id" :name="amount.money" :disabled="is_disabled(amount.category)">
-              {{amount.money}}
+              {{amount.money}}元/年
               <span style="float:right">{{amount.desc}}</span>
             </van-radio>
           </van-radio-group>
