@@ -1,8 +1,10 @@
 import axios from 'axios'
 
+  console.log('abc:', process.env.VUE_APP_API_URL);
   // 1.创建axios的实例
   const instance = axios.create({
-    baseURL: 'http://wx.xzls.vip/api',
+    // baseURL: 'http://wx.xzls.vip/api',
+    baseURL: process.env.VUE_APP_API_URL,
     withCredentials: true,
     timeout: 5000
   })

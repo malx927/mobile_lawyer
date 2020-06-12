@@ -28,7 +28,7 @@ export default {
   computed: {},
   methods: {
      onClickLeft(){
-      this.$router.go(-1)
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
     onClickRight(){
       this.$emit("click-right");
