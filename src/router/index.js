@@ -180,8 +180,8 @@ Vue.use(VueRouter)
   },
 
   {
-    path: '/user',
-    name: 'user',
+    path: '/users',
+    name: 'users',
     meta: {
       title: '用户信息'
     },

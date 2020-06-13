@@ -1,5 +1,6 @@
 <template>
   <div>
+     <van-cell title="用户信息完善" size="large" />
     <van-form @submit="onSubmit">
       <van-field
         v-model="name"
@@ -41,13 +42,16 @@ import { update_user } from '@/api/role'
         console.log(openid)
         
         values["openid"] = openid
-        values["name"] = this.name
-        values["telephone"] = this.telephone
+        console.log(values);
+
         this.UpdateUserInfo(values)   //修改
       },
       UpdateUserInfo(userInfo){
           update_user(userInfo).then(res=>{
             console.log(res);
+            if(res.data.name.length > 0 && res.data.telephone.length > 0){
+              this.$router.push("/")
+            }
           }).catch(error=>{
             console.log(error);
             
