@@ -39,7 +39,6 @@ import { update_user } from '@/api/role'
     methods:{
       onSubmit(values) {
         const openid = localStorage.getItem("openid")
-        console.log(openid)
         
         values["openid"] = openid
         console.log(values);
