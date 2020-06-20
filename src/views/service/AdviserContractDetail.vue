@@ -40,14 +40,14 @@
         <van-cell title=""  style="font-size:14px;height:30px;"/>
 
         <van-cell :title="`甲方：${contract.name}`"  style="font-size:14px;"/>
-        <van-cell :title="`信用代码：${contract.credit_code}`"  style="font-size:14px;"/>
+        <!-- <van-cell :title="`信用代码：${contract.credit_code}`"  style="font-size:14px;"/>
         <van-cell :title="`公司地址：${contract.address}`"  style="font-size:14px;"/>
         <van-cell  style="font-size:14px;margin-top:0px;">
           <template #title>
             <span>法定代表人: {{contract.legal_person}}</span>
             <span style="padding-left:1.8rem;">联系方式：{{contract.telephone}}</span>
           </template>
-        </van-cell>
+        </van-cell> -->
         <van-cell  style="font-size:14px;">
           <template #title>
             <span>联系人：{{contract.contact_person}}</span>
@@ -56,7 +56,7 @@
         </van-cell>
 
         <van-cell :title="`乙方：${contract.office_name}`"  style="font-size:14px;"/>
-        <van-cell :title="`信用代码：${contract.office_code}`"  style="font-size:14px;"/>
+        <!-- <van-cell :title="`信用代码：${contract.office_code}`"  style="font-size:14px;"/> -->
         <van-cell :title="`公司地址：${contract.office_address}`"  style="font-size:14px;"/>
         <van-cell :title="`联系电话：${contract.office_tel}`"  style="font-size:14px;"/>
 
@@ -90,10 +90,10 @@ export default {
       contract:{
         id: 0,
         name: "",
-        telephone: "",
-        credit_code: "",
-        address:"",
-        legal_person: "",
+        // telephone: "",
+        // credit_code: "",
+        // address:"",
+        // legal_person: "",
         contact_person: "",
         contact_tel: "",
         office_name: "",
@@ -101,7 +101,7 @@ export default {
         office_man: "",
         office_man_tel: "",
         office_address: "",
-        office_code: "",
+        // office_code: "",
         start_date: "",
         fmt_start_date: "",
         end_date: "",
@@ -144,24 +144,21 @@ export default {
           this.$router.push('/error')
         }else{
 
-          if(data.category === 1 ){
-            this.$router.replace(`/adviser_detail3/${data.id}`)
-          }else{
             this.contract.id = data.id
             this.contract.name = data.name
-            this.contract.telephone = data.telephone
-            this.contract.credit_code = data.credit_code
-            this.contract.legal_person = data.legal_person
+            // this.contract.telephone = data.telephone
+            // this.contract.credit_code = data.credit_code
+            // this.contract.legal_person = data.legal_person
+            // this.contract.address = data.address
             this.contract.contact_person = data.contact_person
             this.contract.contact_tel = data.contact_tel
-            this.contract.address = data.address
 
             this.contract.office_name = data.office_name
             this.contract.office_tel = data.office_tel
             this.contract.office_man = data.office_man
             this.contract.office_man_tel = data.office_man_tel
             this.contract.office_address = data.office_address
-            this.contract.office_code = data.office_code
+            // this.contract.office_code = data.office_code
 
             if(data.start_date != null){
               this.contract.fmt_start_date = this.$moment(new Date(data.start_date)).format("YYYY年MM月DD日")
@@ -183,7 +180,6 @@ export default {
             this.contract.is_success = data.is_success
             this.contract.show_code = data.show_code
             this.isShow = true  //显示
-          }
         }
       }).catch(error=>{
         console.log(error)

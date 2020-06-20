@@ -29,7 +29,9 @@ import {
   RadioGroup, 
   Radio,
   Notify,
-  List
+  List,
+  Tab, 
+  Tabs
  } from 'vant';
 
  import { Image as VanImage } from 'vant';
@@ -63,7 +65,8 @@ Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(Notify);
 Vue.use(List);
-
+Vue.use(Tabs);
+Vue.use(Tab);
 
 Vue.prototype.$moment = moment;
 

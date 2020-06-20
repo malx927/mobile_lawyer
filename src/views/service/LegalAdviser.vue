@@ -11,7 +11,7 @@
             </div>
         </div>
       </template>
-      <p class="van-cell__label">{{contract.name}}【{{contract.credit_code}}】</p>
+      <p class="van-cell__label">{{contract.name}}</p>
       <p class="van-cell__label" v-if="contract.is_success" >有效期：{{contract.start_date}} 至 {{contract.end_date}}</p>
       <p class="van-cell__label" v-if="contract.is_success" >联系人：{{contract.office_man}}  <span style="padding-left:10px;">电话：{{contract.office_man_tel}}</span></p>
       <template #footer>

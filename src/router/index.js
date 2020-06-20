@@ -198,6 +198,15 @@ Vue.use(VueRouter)
   },
 
   {
+    path: '/publicity',
+    name: 'publicity',
+    meta: {
+      title: '业务推广'
+    },
+    component: () => import('@/views/service/Publicity')
+  },
+
+  {
     path: '/error',
     name: 'error',
     meta: {

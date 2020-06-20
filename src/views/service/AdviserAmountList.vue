@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       title: this.$route.meta.title,
-      member_role: sessionStorage.getItem("member_role"),
+      category: this.$route.query.category,
       money: 0,
       amounts: []
     };
@@ -44,11 +44,11 @@ export default {
 
   },
   methods: {
-    is_disabled(category){
-      if(this.member_role != "2" ){
+    is_disabled(cate){
+      if(this.category != "1" ){
         return false
-      }else if( this.member_role == "2"){
-        if(category === 1)
+      }else if( this.category == "1"){
+        if(cate === 1)
           return false
         else{
           return true
@@ -66,7 +66,7 @@ export default {
       adviser_amount_update(contractInfo).then(res=>{
         console.log(res);
         if(res.data.id){
-          this.$router.replace(`/adviser_confirm/${res.data.id}`)
+          this.$router.replace(`/adviser_detail/${res.data.id}`)
         }
       }).catch(error=>{
         console.log(error);

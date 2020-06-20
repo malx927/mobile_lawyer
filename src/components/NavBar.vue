@@ -22,7 +22,7 @@ export default {
     },
     isShow:{
       type:Boolean,
-      default: true
+      default: false,
     }
   },
   computed: {},

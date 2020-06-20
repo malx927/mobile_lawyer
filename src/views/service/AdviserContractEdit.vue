@@ -9,7 +9,7 @@
         placeholder="公司名称"
         :rules="[{ required: true, message: '请填写公司名称' }]"
       />
-      <van-field
+      <!-- <van-field
         v-model="legal_person"
         name="legal_person"
         label="法定代表人"
@@ -37,7 +37,7 @@
         label="公司地址"
         placeholder="公司地址"
         :rules="[{ required: true, message: '请填写公司地址' }]"
-      />
+      /> -->
       <van-field
         v-model="contact_person"
         name="contact_person"
@@ -81,12 +81,13 @@ export default {
       title: this.$route.meta.title,
       openid: "",
       name: "",
-      telephone: "",
-      credit_code: "",
-      legal_person: "",
-      address: "",
+      // telephone: "",
+      // credit_code: "",
+      // legal_person: "",
+      // address: "",
       contact_person: "",
       contact_tel: "",
+      office_openid: this.$route.query.openid,
     };
   },
   computed: {
@@ -97,6 +98,7 @@ export default {
       const openid = localStorage.getItem("openid")
            
       values["openid"] = openid
+      values["office_openid"] = this.office_openid
 
       console.log(values)
 
@@ -107,7 +109,7 @@ export default {
         adviser_contract_add(contractInfo).then(res=>{
           console.log(res)
           if(res.data.id){
-            this.$router.replace(`/adviser_amount/${res.data.id}`)
+            this.$router.replace(`/adviser_amount/${res.data.id}?category=${res.data.category}`)
           }
         }).catch(error => {
           if (error.response) {
@@ -126,10 +128,10 @@ export default {
         get_company_info(openid).then(res => {
           console.log(res)
           this.name = res.data.name
-          this.telephone = res.data.telephone
-          this.credit_code = res.data.credit_code
-          this.legal_person = res.data.legal_person
-          this.address = res.data.address
+          // this.telephone = res.data.telephone
+          // this.credit_code = res.data.credit_code
+          // this.legal_person = res.data.legal_person
+          // this.address = res.data.address
           this.contact_person = res.data.contact_person
           this.contact_tel = res.data.contact_tel
         }).catch(error => {

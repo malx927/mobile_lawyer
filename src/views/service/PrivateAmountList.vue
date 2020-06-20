@@ -51,7 +51,7 @@ export default {
         console.log(res);
         if(res.data.id){
           // this.$router.replace(`/adviser_confirm/${res.data.id}`)
-          this.$router.replace(`/private_contract_confirm/${res.data.id}`)
+          this.$router.replace(`/private_contract_detail/${res.data.id}`)
         }
       }).catch(error=>{
         console.log(error);

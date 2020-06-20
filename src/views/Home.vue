@@ -21,6 +21,11 @@
           <van-image round width="50" height="50" :src="agency_img" />
         </template>
       </van-grid-item>
+      <van-grid-item v-if="member_role_id" icon="setting-o" text="推广码" to="/publicity">
+        <template #icon>
+          <van-image round width="50" height="50" :src="qrcode_img" />
+        </template>
+      </van-grid-item>
 
       <!-- <van-grid-item text="私人律师" to="/private">
       <template #icon>
@@ -37,6 +42,7 @@
 import agency from "@/assets/images/agency_red.png";
 import adviser from "@/assets/images/adviser_green.png";
 import privates from "@/assets/images/private_blue.png";
+import qrcode from "@/assets/images/qrcode_orange.png";
 
 import { get_swipe_list } from "@/api/wechat";
 import { get_role } from "@/api/role";
@@ -48,10 +54,12 @@ export default {
     return {
       title: this.$route.meta.title || "",
       member_role: false,
+      member_role_id: 0,
       images: [],
       agency_img: agency,
       adviser_img: adviser,
-      private_img: privates
+      private_img: privates,
+      qrcode_img: qrcode
     };
   },
   methods: {
@@ -69,6 +77,7 @@ export default {
       get_role(openid)
         .then(res => {
           console.log("getUserRole:", res);
+          this.member_role_id = res.data.member_role
           this.member_role =
             res.data.member_role === 1 || res.data.member_role == 3;
           if (res.data.member_role == null)

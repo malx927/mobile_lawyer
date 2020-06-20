@@ -36,7 +36,7 @@
 <script>
 import NavBar from "@/components/NavBar"
 import { office } from '@/api/office'
-import { private_contract_add, get_person_info, private_contract_update } from '@/api/service'
+import { private_contract_add, get_person_info } from '@/api/service'
 
 export default {
   name: "PrivateContractEdit",
@@ -55,6 +55,7 @@ export default {
       id_card: "",
       office_name: "",
       office_address: "",
+      office_openid: this.$route.query.openid,
     };
   },
   computed: {
@@ -68,11 +69,12 @@ export default {
       values["openid"] = openid
       values["office_name"] = this.office_name
       values["office_address"] = this.office_address
+      values["office_openid"] = this.office_openid
 
       this.addPrivateContractInfo(values)   //增加
       
     },
-    // 获取律师信息
+    // 获取律所信息
     getOfficeInfo(){
       office().then(res => {
         if(res.data && res.data.length > 0){
@@ -99,23 +101,23 @@ export default {
           console.log(error.config);
         })
     },
-    updatePrivateContractInfo(contractInfo){
-      private_contract_update(contractInfo).then(res=>{
-        if(res.data.id){
-            this.$router.push(`/private_contract_detail/${res.data.id}`)
-        }
+    // updatePrivateContractInfo(contractInfo){
+    //   private_contract_update(contractInfo).then(res=>{
+    //     if(res.data.id){
+    //         this.$router.push(`/private_contract_detail/${res.data.id}`)
+    //     }
 
-      }).catch(error=>{
-        if (error.response) {
-            console.log(error.response.data);
-          } else if (error.request) {
-            console.log(error.request);
-          } else {
-            console.log('Error', error.message);
-          }
-          console.log(error.config);
-      })
-    },
+    //   }).catch(error=>{
+    //     if (error.response) {
+    //         console.log(error.response.data);
+    //       } else if (error.request) {
+    //         console.log(error.request);
+    //       } else {
+    //         console.log('Error', error.message);
+    //       }
+    //       console.log(error.config);
+    //   })
+    // },
     getPersonInfo(){
       const openid = localStorage.getItem('openid')
       if(openid){
@@ -138,6 +140,8 @@ export default {
   created() {
     this.getPersonInfo()
     this.getOfficeInfo()
+    console.log(this.office_openid);
+    
   },
   mounted() {}
 };
